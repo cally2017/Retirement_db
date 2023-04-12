@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retirement Info</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+</head>
+<body> 
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Retirement Info</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{% url 'state'%}">By State</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">By Industry</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'asset'%}">By Plan Size</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="charts">Visualization</a>
+              </li>              
+            </ul>        
+        </div>
+    </nav>
+
+<!--Begin here-->
+    <div class="container">
+        <div class="class">
+            <div class="row"> 
+                <div class="col-md-5">
+                    <div class="text-black p-3 mb-3">
+                        <form class="d-flex" role="search">                            
+                            <select class="form-select me-2" name="states" aria-label="Default select">
+                                <option selected>Industry</option>
+                                <option value="IN">Healthcare</option>
+                                <option value="MA">Manufacturing</option>
+                            </select>
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>                
+            </div>
+            <!--Begin table of results-->           
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>EIN</th>
+                                <th>Sponsor Name</th>
+                                <th>Sponsor Street</th>
+                                <th>Sponsor City</th>
+                                <th>Sponsor Zipcode</th>
+                                <th>Industry</th>
+                                <th>Broker</th>
+                                <th>Provider</th>
+                                <th>Participant</th>
+                                <th>Asset</th>
+                            </tr>
+                            <tr>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                            </tr>
+                            <tr>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                            </tr>
+                            <tr>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                            </tr>
+                            <tr>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                            </tr>
+                            <tr>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                            </tr>
+                            <tr>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                            </tr>
+                            <tr>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                            </tr>
+                            <tr>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                            </tr>
+                            <tr>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                            </tr>
+                            <tr>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                            </tr>
+                            <tr>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                            </tr>
+                            <tr>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                            </tr>
+                            <tr>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                            </tr>
+                            <tr>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                            </tr>
+                            <tr>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                                <th>...</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--End table of results-->   
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h3># Sponsors</h3>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-outline-success">Export to CSV</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>   
+    
+<!--End here-->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
