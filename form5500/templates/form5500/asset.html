@@ -70,186 +70,26 @@
                                 <th>Participant</th>
                                 <th>Asset</th>
                             </tr>
+                    {% if asset_list %}
+                        {% for asset in asset_list %}
                             <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
+                                <td>{{ asset.EIN }}</td>
+                                <td>{{ asset.Sponsor_Name }}</td>
+                                <td>{{ asset.Sponsor_Street }}</td>
+                                <td>{{ asset.Sponsor_City }}</td>
+                                <td>{{ asset.Sponsor_State }}</td>
+                                <td>{{ asset.Sponsor_Zipcode }}</td>
+                                <td>{{ asset.Industry_Description}}</td>
+                                <td>{{ asset.Broker_Name }}</td>
+                                <td>{{ asset.Provider_Name }}</td>
+                                <td>{{ asset.Participants }}</td>
+                                <td>{{ asset.Plan_Asset }}</td>
                             </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
+                        {% endfor %}
+    
+                    {% else %}
+                        <p>No records are available.</p>
+                    {% endif %}
                         </table>
                     </div>
                 </div>

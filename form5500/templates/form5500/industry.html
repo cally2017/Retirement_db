@@ -67,186 +67,26 @@
                                 <th>Participant</th>
                                 <th>Asset</th>
                             </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
+                        {% if industry_list %}
+                            {% for industry in industry_list %}
+                                <tr>
+                                    <td>{{ industry.EIN }}</td>
+                                    <td>{{ industry.Sponsor_Name }}</td>
+                                    <td>{{ industry.Sponsor_Street }}</td>
+                                    <td>{{ industry.Sponsor_City }}</td>
+                                    <td>{{ industry.Sponsor_State }}</td>
+                                    <td>{{ industry.Sponsor_Zipcode }}</td>
+                                    <td>{{ industry.Industry_Description}}</td>
+                                    <td>{{ industry.Broker_Name }}</td>
+                                    <td>{{ industry.Provider_Name }}</td>
+                                    <td>{{ industry.Participants }}</td>
+                                    <td>{{ industry.Plan_Asset }}</td>
+                                </tr>
+                            {% endfor %}
+
+                        {% else %}
+                            <p>No records are available.</p>
+                        {% endif %}
                         </table>
                     </div>
                 </div>
