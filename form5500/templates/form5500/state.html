@@ -44,7 +44,7 @@
                                 <option value="IN">Indiana</option>
                                 <option value="MA">Massachusetts</option>
                             </select>
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <input class="form-control me-2" name='q' type="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>
                     </div>
@@ -60,193 +60,35 @@
                                 <th>Sponsor Name</th>
                                 <th>Sponsor Street</th>
                                 <th>Sponsor City</th>
+                                <th>Sponsor State</th>
                                 <th>Sponsor Zipcode</th>
                                 <th>Industry</th>
                                 <th>Broker</th>
                                 <th>Provider</th>
                                 <th>Participant</th>
                                 <th>Asset</th>
-                            </tr>
+                         </tr> 
+                    {% if state_list %}
+                        {% for state in state_list %}
                             <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
+                                <td>{{ state.EIN }}</td>
+                                <td>{{ state.Sponsor_Name }}</td>
+                                <td>{{ state.Sponsor_Street }}</td>
+                                <td>{{ state.Sponsor_City }}</td>
+                                <td>{{ state.Sponsor_State }}</td>
+                                <td>{{ state.Sponsor_Zipcode }}</td>
+                                <td>{{ state.Industry_Description}}</td>
+                                <td>{{ state.Broker_Name }}</td>
+                                <td>{{ state.Provider_Name }}</td>
+                                <td>{{ state.Participants }}</td>
+                                <td>{{ state.Plan_Asset }}</td>
                             </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
-                            <tr>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                                <th>...</th>
-                            </tr>
+                        {% endfor %}
+
+                    {% else %}
+                        <p>No records are available.</p>
+                    {% endif %}
+
                         </table>
                     </div>
                 </div>
