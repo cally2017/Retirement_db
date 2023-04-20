@@ -26,7 +26,10 @@
                 <a class="nav-link" href="{% url 'asset'%}">By Plan Size</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="charts">Visualization</a>
+                <a class="nav-link" href="{% url 'charts'%}">Visualization</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'map'%}">Map</a>
               </li>              
             </ul>        
         </div>
@@ -41,27 +44,27 @@
                         <form class="d-flex" role="search">                            
                             <select class="form-select me-2" name="industries" aria-label="Default select">
                                 <option selected>Industry</option>
-                                <option value="72">Accommodation and Food Services</option>
-                                <option value="56">Administrative, Support, Waste Management and Remediation Services</option>
-                                <option value="11">Agriculture, Forestry, Fishing, Hunting</option>
-                                <option value="71">Arts, Entertainment and Recreation</option>
-                                <option value="23">Construction</option>
-                                <option value="61">Educational Services</option>
-                                <option value="52">Finance and Insurance</option>
-                                <option value="62">Healthcare</option>
-                                <option value="51">Information</option>
-                                <option value="55">Management [Companies & Enterprises]</option>
-                                <option value="31">Manufacturing</option>
-                                <option value="21">Mining, Quarrying, Oil, Gas</option>
-                                <option value="81">Other</option>
-                                <option value="54">Professional, Scientific, Technical</option>
-                                <option value="92">Public Administration</option>
-                                <option value="53">Real Estate, Rental, Leasing</option>
-                                <option value="44">Retail</option>
-                                <option value="48">Transportation and Warehousing</option>
-                                <option value="99">Unknown</option>
-                                <option value="22">Utilities</option>
-                                <option value="42">Wholesale</option>
+                                <option value="Accommodation and Food Services">Accommodation and Food Services</option>
+                                <option value="Administrative and Support and Waste Management and Remediation Services">Administrative, Support, Waste Management and Remediation Services</option>
+                                <option value="Agriculture, Forestry, Fishing and Hunting">Agriculture, Forestry, Fishing, Hunting</option>
+                                <option value="Arts, Entertainment, and Recreation">Arts, Entertainment and Recreation</option>
+                                <option value="Construction">Construction</option>
+                                <option value="Educational Services">Educational Services</option>
+                                <option value="Finance and Insurance">Finance and Insurance</option>
+                                <option value="Health Care and Social Assistance">Healthcare, Social Assistance</option>
+                                <option value="Information">Information</option>
+                                <option value="Management of Companies and Enterprises">Management [Companies & Enterprises]</option>
+                                <option value="Manufacturing">Manufacturing</option>
+                                <option value="Mining, Quarrying, and Oil and Gas Extraction">Mining, Quarrying, Oil, Gas</option>
+                                <option value="Other Services (except Public Administration)">Other</option>
+                                <option value="Professional, Scientific, and Technical Services">Professional, Scientific, Technical</option>
+                                <option value="Public Administration">Public Administration</option>
+                                <option value="Real Estate and Rental and Leasing">Real Estate, Rental, Leasing</option>
+                                <option value="Retail Trade">Retail</option>
+                                <option value="Transportation and Warehousing">Transportation and Warehousing</option>
+                                <option value="Unknown">Unknown</option>
+                                <option value="Utilities">Utilities</option>
+                                <option value="Wholesale Trade">Wholesale</option>
                             </select>
                             <input class="form-control me-2" name="q" type="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">Search</button>
