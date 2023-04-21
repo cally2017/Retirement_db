@@ -24,5 +24,7 @@ urlpatterns = [
     path('',search_state, name='state'),
     path('industry',search_industry, name='industry'),
     path('asset',search_asset, name='asset'),
-    path('export/<q>',export,name='export')
+    path('state_export/<q>',state_export,name='state_export'),
+    path('industry_export/<q>',industry_export,name='industry_export'),
+    path('asset_export/<q>',asset_export,name='asset_export')
 ]
