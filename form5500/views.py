@@ -5,23 +5,33 @@ import datetime
 from .models import Form5500
 import pandas as pd
 from .utils import get_plot
-from django.db.models import Count
-from django.db.models import Q, F
+from django.db.models import Q
 import folium
 
 # Create your views here.
 def charts(request):
     qs = Form5500.objects.all().values()
     data = pd.DataFrame(qs) 
+    print(data['EIN'][:10])
     gb_state_cnt = data.groupby("Sponsor_State", as_index =False).count().nlargest(10,"EIN")
     gb_state_cnt = gb_state_cnt.sort_values(by=['EIN'])
     gb_state_sum = data.groupby("Sponsor_State", as_index =False)["Plan_Asset"].sum().nlargest(10,"Plan_Asset")
     gb_state_sum = gb_state_sum.sort_values(by=['Plan_Asset'])
     gb_industry_sum = data.groupby("Industry_Description", as_index =False)["Plan_Asset"].sum()
     gb_industry_sum = gb_industry_sum.sort_values(by=['Plan_Asset'], ascending=False)
+    #print(gb_state_cnt)
     chart = get_plot(gb_state_cnt["Sponsor_State"],gb_state_cnt["EIN"],gb_state_sum["Sponsor_State"],gb_state_sum["Plan_Asset"],
                      gb_industry_sum["Industry_Description"],gb_industry_sum["Plan_Asset"])
     return render(request,'form5500/charts.html',{'chart':chart})
+
+def state(request):
+    return render(request,'form5500/state.html')
+
+def asset(request):
+    return render(request,'form5500/asset.html')
+
+def industry(request):
+    return render(request,'form5500/industry.html')
 
 def map(request):
     qs = Form5500.objects.all().values()
@@ -52,18 +62,19 @@ def map(request):
         'm': m, 
     }  
     return render(request, 'form5500/map.html', context)
-
 def search_state(request): # new
-        #function grabs both drop down menu and search bar input 
-        # - if drop down is 'State', and 'q' is input - executes query on 'q'
-        # - if q is empty, but drop down is not 'State' - executes query on drop down
-        # - if both q is empty and drop down is 'State' - no query executed
-        # - else - performs query on both values
+        #function will look at search bar first and see if it is specified.
+        #then will look at drop down menu 
+        # - if drop down is 'State', breaks out.
+        # - if query, then it will execute
 
+        state_list = Form5500.objects.order_by('EIN')[:51]
+        q = ""
+        states = ""
         #Check if within GET
         if 'q' and 'states' in request.GET :
             #collect variables
-            q = request.GET['q'].upper()
+            q = request.GET['q']
             states = request.GET['states']
             if states == 'State':
                 #state drop down is empty
@@ -78,26 +89,52 @@ def search_state(request): # new
                 state_list = Form5500.objects.order_by('EIN')[:51]
             else: 
                 #Dual query
-                state_list = Form5500.objects.filter(Sponsor_Name = q, Sponsor_State = states).values()
-        #Default Output
-        else:
-                state_list = Form5500.objects.order_by('EIN')[:51]
-
-        # Export
-        if 'export_button' in request.GET:
-            response = HttpResponse(content_type='text/csv')
-            response['Content-Disposition'] = 'attachment; filename=retiment_info' + str(datetime.datetime.now())+'.csv'
-            writer = csv.writer(response)
-            writer.writerow(['EIN','Sponsor Name','Sponsor Street','Sponsor City','Sponsor State','Sponsor Zipcode','Industry','Broker','Provider','Participant','Asset'])
-            print(state_list)
-            for state in state_list:
-                writer.writerow([state.EIN,state.Sponsor_Name,state.Sponsor_Street,state.Sponsor_City,state.Sponsor_State,state.Sponsor_Zipcode,state.Industry_Description,state.Broker_Name,state.Provider_Name,state.Participants,state.Plan_Asset])
-            return response
+                query1 = Q(Q(Sponsor_State__icontains=states))
+                query2 = Q(Q(Sponsor_Name__icontains=q))
+                state_list = Form5500.objects.filter(query1, query2).values()
         
         context = {
-            'state_list': state_list
+            'state_list': state_list,
+            'phrase': states+'-'+q,
         }
+
         return render(request, 'form5500/state.html', context)
+
+def export(request, q): # new
+        #function will look at search bar first and see if it is specified.
+        #then will look at drop down menu 
+        # - if drop down is 'State', breaks out.
+        # - if query, then it will execute
+
+        data = Form5500.objects.order_by('EIN')[:51]        
+        text = q.split('-')
+        #Check if within GET
+        if text[0]=='State' and text[1]!='':
+        #state drop down is empty
+            query = Q(Q(Sponsor_Name__icontains=text[1]))
+            data = Form5500.objects.filter(query).order_by('EIN')
+        elif text[0]!='State' and text[1]=='':
+            # q is empty
+            query = Q(Q(Sponsor_State__icontains=text[0]))
+            data = Form5500.objects.filter(query).order_by('EIN')            
+        elif text[0]!='State' and text[1]!='':
+            #Dual query
+            query1 = Q(Q(Sponsor_State__icontains=text[0]))
+            query2 = Q(Q(Sponsor_Name__icontains=text[1]))
+            data = Form5500.objects.filter(query1,query2).order_by('EIN')   
+
+        #Default Output
+        else:
+            data = Form5500.objects.order_by('EIN')[:51]
+
+        # Export
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename=retiment_info' + str(datetime.datetime.now())+'.csv'
+        writer = csv.writer(response)
+        writer.writerow(['EIN','Sponsor Name','Sponsor Street','Sponsor City','Sponsor State','Sponsor Zipcode','Industry','Broker','Provider','Participant','Asset'])
+        for state in data:
+            writer.writerow([state.EIN,state.Sponsor_Name,state.Sponsor_Street,state.Sponsor_City,state.Sponsor_State,state.Sponsor_Zipcode,state.Industry_Description,state.Broker_Name,state.Provider_Name,state.Participants,state.Plan_Asset])
+        return response 
 
 def search_asset(request): # new
         #function will look at search bar first and see if it is specified.
@@ -105,74 +142,64 @@ def search_asset(request): # new
         # - if drop down is 'State', breaks out.
         # - if query, then it will execute
 
-        #Check if within GET
-        if 'q' and 'operator' in request.GET :
-            #collect variables
-            q = request.GET['q'].upper()
-            operators = request.GET['operator']
-            if operators == 'Operator':
-                #operator drop down is empty
+        # Only search bar specified
+        if 'q' in request.GET:
+            q = request.GET['q']
+            if q:
                 query = Q(Q(Plan_Asset__icontains=q))
                 asset_list = Form5500.objects.filter(query).order_by('EIN')
-            elif q=='':
-                # q is empty
+            else:
                 asset_list = Form5500.objects.order_by('EIN')[:51]
-            elif operators=='Operator' and q=='':
-                #No query - Resort to Default view
-                asset_list = Form5500.objects.order_by('EIN')[:51]
-            elif operators == ">": 
-                #Dual query
-                asset_list = Form5500.objects.filter(Plan_Asset__gt=q).values()
-            elif operators == ">=": 
-                #Dual query
-                asset_list = Form5500.objects.filter(Plan_Asset__gte=q).values()
-            elif operators == "=": 
-                #Dual query
-                asset_list = Form5500.objects.filter(Plan_Asset__exact=q).values()
-            elif operators == "<": 
-                #Dual query
-                asset_list = Form5500.objects.filter(Plan_Asset__lt=q).values()
-            elif operators == "<=": 
-                #Dual query
-                asset_list = Form5500.objects.filter(Plan_Asset__lte=q).values()
-        #Default Output
         else:
+            asset_list = Form5500.objects.order_by('EIN')[:51]
+
+        # Only drop down specified
+        if 'operator' in request.GET:
+            operators = request.GET['operator']
+            if operators == 'Operator':
+                next
+            elif operators:
+                query = Q(Q(Plan_Asset__icontains=operators))
+                asset_list = Form5500.objects.filter(query).order_by('EIN')
+            else:
                 asset_list = Form5500.objects.order_by('EIN')[:51]
+        else:
+            asset_list = Form5500.objects.order_by('EIN')[:51]
+        
         context = {
             'asset_list': asset_list
         }
         return render(request, 'form5500/asset.html', context)
 
 def search_industry(request): # new
-        #function grabs both drop down menu and search bar input 
-        # - if drop down is 'Industry', and 'q' is input - executes query on 'q'
-        # - if q is empty, but drop down is not 'Industry' - executes query on drop down
-        # - if both q is empty and drop down is 'Industry' - no query executed
-        # - else - performs query on both values
+        #function will look at search bar first and see if it is specified.
+        #then will look at drop down menu 
+        # - if drop down is 'State', breaks out.
+        # - if query, then it will execute
 
-        #Check if within GET
-        if 'q' and 'industries' in request.GET :
-            #collect variables
-            q = request.GET['q'].upper()
+        # Only search bar specified
+        if 'q' in request.GET:
+            q = request.GET['q']
+            if q:
+                query = Q(Q(Industry_Description__icontains=q))
+                industry_list = Form5500.objects.filter(query).order_by('EIN')
+            else:
+                industry_list = Form5500.objects.order_by('EIN')[:51]
+        else:
+            industry_list = Form5500.objects.order_by('EIN')[:51]
+
+        # Only drop down specified
+        if 'industries' in request.GET:
             industries = request.GET['industries']
             if industries == 'Industry':
-                #industry drop down is empty
-                query = Q(Q(Sponsor_Name__icontains=q))
-                industry_list = Form5500.objects.filter(query).order_by('EIN')
-            elif q=='':
-                # q is empty
+                next
+            elif industries:
                 query = Q(Q(Industry_Description__icontains=industries))
                 industry_list = Form5500.objects.filter(query).order_by('EIN')
-            elif industries=='Industry' and q=='':
-                #No query - Resort to Default view
+            else:
                 industry_list = Form5500.objects.order_by('EIN')[:51]
-            else: 
-                #Dual query
-                industry_list = Form5500.objects.filter(Sponsor_Name = q, Industry_Description = industries).values()
-        #Default Output
         else:
-                industry_list = Form5500.objects.order_by('EIN')[:51]
-        
+            industry_list = Form5500.objects.order_by('EIN')[:51]
         
         context = {
             'industry_list': industry_list
