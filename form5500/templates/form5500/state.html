@@ -27,130 +27,126 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'charts'%}">Visualization</a>
-              </li> 
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'map'%}">Map</a>
-              </li>               
+              </li>              
             </ul>        
         </div>
     </nav>
 
 <!--Begin here-->
-    <div class="container">
-        <div class="class">
-            <div class="row"> 
-                <div class="col-md-5">
-                    <div class="text-black p-3 mb-3">
-                        <form class="d-flex" role="search">                            
-                            <select class="form-select me-2" name="states" aria-label="Default select">
-                                <option selected>State</option>
-                                <option value="AL">Alabama</option>
-                                <option value="AK">Alaska</option>
-                                <option value="AZ">Arizona</option>
-                                <option value="AR">Arkansas</option>
-                                <option value="CA">California</option>
-                                <option value="CO">Colorado</option>
-                                <option value="CT">Connecticut</option>
-                                <option value="DE">Delaware</option>
-                                <option value="FL">Florida</option>
-                                <option value="HI">Hawaii</option>
-                                <option value="ID">Idaho</option>
-                                <option value="IL">Illinois</option>
-                                <option value="IN">Indiana</option>
-                                <option value="IA">Iowa</option>
-                                <option value="KS">Kansas</option>
-                                <option value="LA">Louisiana</option>
-                                <option value="ME">Maine</option>
-                                <option value="MD">Maryland</option>
-                                <option value="MA">Massachusetts</option>
-                                <option value="MI">Michigan</option>
-                                <option value="MN">Minnesota</option>
-                                <option value="MS">Mississippi</option>
-                                <option value="MO">Missouri</option>
-                                <option value="MT">Montana</option>
-                                <option value="NE">Nebraska</option>
-                                <option value="NV">Nevada</option>
-                                <option value="NH">New Hampshire</option>
-                                <option value="NJ">New Jersey</option>
-                                <option value="NM">New Mexico</option>
-                                <option value="NY">New York</option>
-                                <option value="NC">North Carolina</option>
-                                <option value="OH">North Dakota</option>
-                                <option value="OK">Oklahoma</option>
-                                <option value="OR">Oregon</option>
-                                <option value="PA">Pennsylvania</option>
-                                <option value="RI">Rhode Island</option>
-                                <option value="SC">South Carolina</option>
-                                <option value="SD">South Dakota</option>
-                                <option value="TN">Tennessee</option>
-                                <option value="TX">Texas</option>
-                                <option value="UT">Utah</option>
-                                <option value="VT">Vermont</option>
-                                <option value="VA">Virginia</option>
-                                <option value="WA">Washington</option>
-                                <option value="WV">West Virginia</option>
-                                <option value="WI">Wisconsin</option>
-                                <option value="WY">Wyoming</option>
-                            </select>
-                            <input class="form-control me-2" name='q' type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form>
-                    </div>
-                </div>                
-            </div>
-            <!--Begin table of results-->           
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <table class="table table-striped">
-                            <tr>
-                                <th>EIN</th>
-                                <th>Sponsor Name</th>
-                                <th>Sponsor Street</th>
-                                <th>Sponsor City</th>
-                                <th>Sponsor State</th>
-                                <th>Sponsor Zipcode</th>
-                                <th>Industry</th>
-                                <th>Broker</th>
-                                <th>Provider</th>
-                                <th>Participant</th>
-                                <th>Asset</th>
-                         </tr> 
-                    {% if state_list %}
-                        {% for state in state_list %}
-                            <tr>
-                                <td>{{ state.EIN }}</td>
-                                <td>{{ state.Sponsor_Name }}</td>
-                                <td>{{ state.Sponsor_Street }}</td>
-                                <td>{{ state.Sponsor_City }}</td>
-                                <td>{{ state.Sponsor_State }}</td>
-                                <td>{{ state.Sponsor_Zipcode }}</td>
-                                <td>{{ state.Industry_Description}}</td>
-                                <td>{{ state.Broker_Name }}</td>
-                                <td>{{ state.Provider_Name }}</td>
-                                <td>{{ state.Participants }}</td>
-                                <td>{{ state.Plan_Asset }}</td>
-                            </tr>
-                        {% endfor %}
+<div class="container">
+    <div class="class">
+        <div class="row"> 
+            <div class="col-md-5">
+                <div class="text-black p-3 mb-3">
+                    <form class="d-flex" role="search">                            
+                        <select class="form-select me-2" name="states" aria-label="Default select">
+                            <option selected>State</option>
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="FL">Florida</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="IA">Iowa</option>
+                            <option value="KS">Kansas</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="ME">Maine</option>
+                            <option value="MD">Maryland</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MI">Michigan</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MO">Missouri</option>
+                            <option value="MT">Montana</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NV">Nevada</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="NY">New York</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="OH">North Dakota</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="OR">Oregon</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="TX">Texas</option>
+                            <option value="UT">Utah</option>
+                            <option value="VT">Vermont</option>
+                            <option value="VA">Virginia</option>
+                            <option value="WA">Washington</option>
+                            <option value="WV">West Virginia</option>
+                            <option value="WI">Wisconsin</option>
+                            <option value="WY">Wyoming</option>
+                        </select>
+                        <input class="form-control me-2" name='q' type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>                
+        </div>
+        <!--Begin table of results-->           
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>EIN</th>
+                            <th>Sponsor Name</th>
+                            <th>Sponsor Street</th>
+                            <th>Sponsor City</th>
+                            <th>Sponsor State</th>
+                            <th>Sponsor Zipcode</th>
+                            <th>Industry</th>
+                            <th>Broker</th>
+                            <th>Provider</th>
+                            <th>Participant</th>
+                            <th>Asset</th>
+                     </tr> 
+                {% if state_list %}
+                    {% for state in state_list %}
+                        <tr>
+                            <td>{{ state.EIN }}</td>
+                            <td>{{ state.Sponsor_Name }}</td>
+                            <td>{{ state.Sponsor_Street }}</td>
+                            <td>{{ state.Sponsor_City }}</td>
+                            <td>{{ state.Sponsor_State }}</td>
+                            <td>{{ state.Sponsor_Zipcode }}</td>
+                            <td>{{ state.Industry_Description}}</td>
+                            <td>{{ state.Broker_Name }}</td>
+                            <td>{{ state.Provider_Name }}</td>
+                            <td>{{ state.Participants }}</td>
+                            <td>{{ state.Plan_Asset }}</td>
+                        </tr>
+                    {% endfor %}
 
-                    {% else %}
-                        <p>No records are available.</p>
-                    {% endif %}
+                {% else %}
+                    <p>No records are available.</p>
+                {% endif %}
 
-                        </table>
-                    </div>
+                    </table>
                 </div>
             </div>
+        </div>
             <!--End table of results-->   
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <h3># Sponsors</h3>
-                    </div>
-                    <div class="col">
-                        <form class="d-flex" role="export">
-                            <button class="btn btn-outline-success" name='export_button'>Export to CSV</button>
-                        </form>
+                        <h3>{{state_list|length}} Sponsors</h3>
+                    </div> 
+                    <div class="col">                        
+                        <a href="{% url 'export' phrase %}"><button class="btn btn-outline-success">Export to CSV1</button></a>
+                        
                     </div>
                 </div>
                 
