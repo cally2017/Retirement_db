@@ -27,6 +27,9 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'charts'%}">Visualization</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'map'%}">Map</a>
               </li>              
             </ul>        
         </div>
@@ -145,7 +148,7 @@
                         <h3>{{state_list|length}} Sponsors</h3>
                     </div> 
                     <div class="col">                        
-                        <a href="{% url 'export' phrase %}"><button class="btn btn-outline-success">Export to CSV1</button></a>
+                        <a href="{% url 'state_export' phrase %}"><button class="btn btn-outline-success">Export to CSV</button></a>
                         
                     </div>
                 </div>

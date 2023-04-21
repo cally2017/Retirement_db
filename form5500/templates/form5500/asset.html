@@ -102,10 +102,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <h3># Sponsors</h3>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-outline-success">Export to CSV</button>
+                        <h3>{{asset_list|length}} Sponsors</h3>
+                    </div> 
+                    <div class="col">                        
+                        <a href="{% url 'asset_export' phrase %}"><button class="btn btn-outline-success">Export to CSV</button></a> 
                     </div>
                 </div>
                 
